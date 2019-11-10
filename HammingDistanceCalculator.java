@@ -125,7 +125,7 @@ public class HammingDistanceCalculator extends Application {
 		addStation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//TODO: finish this
+				compareWithDropBox.getItems().addAll(addStationsTxt.getText());
 			}
 		});
 		hammingValue.valueProperty().addListener(new ChangeListener<Number>() {
