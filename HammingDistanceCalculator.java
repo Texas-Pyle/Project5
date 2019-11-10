@@ -1,3 +1,6 @@
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +26,7 @@ public class HammingDistanceCalculator extends Application {
 		
 	}
 
+	
 	@Override
 	public void start(Stage applicationStage) throws Exception {
 		GridPane gridPane = new GridPane();
@@ -56,7 +60,7 @@ public class HammingDistanceCalculator extends Application {
 		Button calculateHD = new Button("Calculate HD");
 		Button addStation = new Button ("Add Station");
 		
-		ComboBox compareWithDropBox = new ComboBox();
+		ComboBox<String> compareWithDropBox = new ComboBox<String>();
 		compareWithDropBox.getItems().addAll("Test");
 		
 		Slider hammingValue = new Slider();
@@ -124,7 +128,13 @@ public class HammingDistanceCalculator extends Application {
 				//TODO: finish this
 			}
 		});
-		
+		hammingValue.valueProperty().addListener(new ChangeListener<Number>() {
+			
+			public void changed(ObservableValue<? extends Number> ov,Number old_val, Number new_val) {
+				double currentValue = Math.floor(hammingValue.getValue());
+				hammingDistance.setText(Double.toString(currentValue));
+			}
+		});
 	}
 	
 	
