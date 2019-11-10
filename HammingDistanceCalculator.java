@@ -37,10 +37,10 @@ public class HammingDistanceCalculator extends Application {
 		
 		TextArea StationsBox = new TextArea();
 		StationsBox.setEditable(false);
-		StationsBox.resize(400, 400);
+		StationsBox.setPrefSize(100	,250); 
 		
 		
-		Label hammingDistanceLabel = new Label("Enter Hamming Dis:");
+		Label hammingDistanceLabel = new Label("Enter Hamming Dist:");
 		Label distanceLable0 = new Label("Distance0");
 		Label distanceLabel1 = new Label("Distance1");
 		Label distanceLabel2 = new Label ("Distance2");
@@ -68,6 +68,7 @@ public class HammingDistanceCalculator extends Application {
 		hammingValue.setSnapToTicks(true);
 		hammingValue.setShowTickLabels(true);
 		
+		gridPane.setColumnSpan(StationsBox, 2);
 		
 		gridPane.add(hammingDistanceLabel,0,0);
 		gridPane.add(hammingDistance,1,0);
