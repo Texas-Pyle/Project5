@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -103,6 +105,28 @@ public class HammingDistanceCalculator extends Application {
 		applicationStage.setScene(scene);
 		applicationStage.setTitle("Hamming Distance");
 		applicationStage.show();
+		
+		showStation.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO: finish this 
+			}
+		});
+		calculateHD.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO: finish this
+			}
+		});
+		addStation.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO: finish this
+			}
+		});
+		
 	}
+	
+	
 
 }
