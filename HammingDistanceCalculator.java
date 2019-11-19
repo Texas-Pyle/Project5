@@ -33,10 +33,15 @@ public class HammingDistanceCalculator extends Application {
 		Scene scene = new Scene(gridPane);
 		
 		TextField distance0 = new TextField();
+		distance0.setEditable(false);
 		TextField distance1 = new TextField();
+		distance1.setEditable(false);
 		TextField distance2 = new TextField();
+		distance2.setEditable(false);
 		TextField distance3 = new TextField();
+		distance3.setEditable(false);
 		TextField distance4 = new TextField();
+		distance4.setEditable(false);
 		TextField hammingDistance = new TextField();
 		hammingDistance.setEditable(false);
 		TextField addStationsTxt = new TextField();
@@ -84,18 +89,18 @@ public class HammingDistanceCalculator extends Application {
 		gridPane.add(compareWithLabel, 0, 4);
 		gridPane.add(compareWithDropBox,1,4);
 		gridPane.add(calculateHD, 0, 5);
-		gridPane.add(distance0, 1, 6);
+		gridPane.add(distance0, 1, 7);
 		gridPane.add(distanceLable0, 0, 7);
 		gridPane.add(distance1, 1, 8);
 		gridPane.add(distanceLabel1, 0, 8);
-		gridPane.add(distance2, 1, 10);
-		gridPane.add(distanceLabel2, 0, 10);
-		gridPane.add(distance3, 1, 11);
-		gridPane.add(distanceLabel3, 0, 11);
-		gridPane.add(distance4, 1, 12);
-		gridPane.add(distanceLabel4, 0, 12);
-		gridPane.add(addStation, 0, 13);
-		gridPane.add(addStationsTxt, 1, 13);
+		gridPane.add(distance2, 1, 9);
+		gridPane.add(distanceLabel2, 0, 9);
+		gridPane.add(distance3, 1, 10);
+		gridPane.add(distanceLabel3, 0, 10);
+		gridPane.add(distance4, 1, 11);
+		gridPane.add(distanceLabel4, 0, 11);
+		gridPane.add(addStation, 0, 12);
+		gridPane.add(addStationsTxt, 1, 12);
 		
 		
 		
