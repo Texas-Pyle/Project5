@@ -1,6 +1,9 @@
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,7 +69,8 @@ public class HammingDistanceCalculator extends Application {
 		Button addStation = new Button ("Add Station");
 		
 		ComboBox<String> compareWithDropBox = new ComboBox<String>();
-		compareWithDropBox.getItems().addAll("Test");
+		MesontReader MR = new MesontReader();
+		compareWithDropBox.getItems().addAll(MR.fileReader());
 		
 		Slider hammingValue = new Slider();
 		hammingValue.setMax(4);
@@ -119,6 +123,20 @@ public class HammingDistanceCalculator extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				//TODO: finish this 
+				MesoAsciiCal ma = new MesoAsciiCal(compareWithDropBox.getValue());
+				int desieredhammingDist = ma.calAverage() - (int)hammingValue.getValue();
+				MesontReader mr = new MesontReader();
+				try {
+					for (String station : mr.fileReader() ) {
+						 ma = new MesoAsciiCal(station);
+						if (desieredhammingDist == ma.calAverage()) {
+							StationsBox.setText(station);
+						}
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
 			}
 		});
 		calculateHD.setOnAction(new EventHandler<ActionEvent>() {
