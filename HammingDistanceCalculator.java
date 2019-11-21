@@ -63,6 +63,7 @@ public class HammingDistanceCalculator extends Application {
 	public void start(Stage applicationStage) throws Exception {
 	
 		initilizeStationsList();
+		
 		initizeTextField();
 		
 		initilizeTextArea();
@@ -86,14 +87,15 @@ public class HammingDistanceCalculator extends Application {
 		showStation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
+				StationsBox.setText("");
+				StringBuilder stationsText = new StringBuilder();
 				String comparingTo = compareWithDropBox.getValue();
 				int desieredHammingDistance = (int) hammingValue.getValue();
 				for (int i = 0; i < stations.size(); ++i) {
 					if (HammingDist.distCalculator(stations.get(i), comparingTo) == desieredHammingDistance)
-						StationsBox.setText(StationsBox.getText() + "\n" + stations.get(i));
+						stationsText.append(stations.get(i)+"\n");
 				}
-
+				StationsBox.setText(stationsText.toString());
 			}
 		});
 		calculateHD.setOnAction(new EventHandler<ActionEvent>() {
@@ -116,7 +118,14 @@ public class HammingDistanceCalculator extends Application {
 		addStation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				if (addStationsTxt.getText().length() ==  4){
 				compareWithDropBox.getItems().addAll(addStationsTxt.getText());
+					if (StationsBox.getText().equals("Station must be four letters long!!!")) {
+						StationsBox.setText("");
+					}
+				}else 
+					StationsBox.setText("Station must be four letters long!!!");	
+				
 			}
 		});
 		hammingValue.valueProperty().addListener(new ChangeListener<Number>() {
@@ -181,6 +190,7 @@ public class HammingDistanceCalculator extends Application {
 		hammingValue.setShowTickMarks(true);
 		hammingValue.setSnapToTicks(true);
 		hammingValue.setShowTickLabels(true);
+		hammingValue.setValue(2);
 		
 	}
 
@@ -188,6 +198,7 @@ public class HammingDistanceCalculator extends Application {
 	private void initilizeComboBox() {
 		compareWithDropBox = new ComboBox<String>();
 		compareWithDropBox.getItems().addAll(stations);
+		compareWithDropBox.setValue("Select Station");
 		
 	}
 
@@ -221,20 +232,21 @@ public class HammingDistanceCalculator extends Application {
 
 
 	private void initizeTextField() {
-		 distance0 = new TextField();
+		distance0 = new TextField();
 		distance0.setEditable(false);
-		 distance1 = new TextField();
+		distance1 = new TextField();
 		distance1.setEditable(false);
-		 distance2 = new TextField();
+		distance2 = new TextField();
 		distance2.setEditable(false);
-		 distance3 = new TextField();
+		distance3 = new TextField();
 		distance3.setEditable(false);
-		 distance4 = new TextField();
+		distance4 = new TextField();
 		distance4.setEditable(false);
-		 hammingDistance = new TextField();
+		hammingDistance = new TextField();
 		hammingDistance.setEditable(false);
-		 addStationsTxt = new TextField();
-		
+		addStationsTxt = new TextField();
+		hammingDistance.setText("2.0");
+
 	}
 	
 	
