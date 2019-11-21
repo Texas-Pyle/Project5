@@ -20,8 +20,6 @@ public class MesontReader {
 	}
 	public ArrayList<String> fileReader() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"));
-		br.readLine();
-		br.readLine();
 		String currentLine = br.readLine();
 		ArrayList<String> stationNames = new ArrayList();
 		while (currentLine != null) {

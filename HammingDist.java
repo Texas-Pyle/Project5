@@ -3,6 +3,7 @@ import  java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class HammingDist{
@@ -27,10 +28,12 @@ public class HammingDist{
 	
 
 
-	public static int simmilarDistance(String stationA ,String stationB , int desieredHammingDistance) {
+	public static int simmilarDistance(ArrayList<String> stationA ,String stationB , int desieredHammingDistance) {
 		int numStations = 0;
-		if (distCalculator(stationA, stationB) == desieredHammingDistance)
+		for (int i = 0; i < stationA.size(); ++i) {
+		if (distCalculator(stationA.get(i), stationB) == desieredHammingDistance)
 			numStations++;
+		}
 		return numStations;
 	}
 	

@@ -3,6 +3,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -121,28 +122,52 @@ public class HammingDistanceCalculator extends Application {
 		
 		showStation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent event) {
-				//TODO: finish this 
-				MesoAsciiCal ma = new MesoAsciiCal(compareWithDropBox.getValue());
-				int desieredhammingDist = ma.calAverage() - (int)hammingValue.getValue();
-				MesontReader mr = new MesontReader();
+			public void handle(ActionEvent event){
+				
 				try {
-					for (String station : mr.fileReader() ) {
-						 ma = new MesoAsciiCal(station);
-						if (desieredhammingDist == ma.calAverage()) {
-							StationsBox.setText(station);
-						}
+					ArrayList<String> stations = MR.fileReader();
+					String comparingTo = compareWithDropBox.getValue();
+					int desieredHammingDistance = (int)hammingValue.getValue();
+					for (int i = 0; i < stations.size(); ++i) {
+						if (HammingDist.distCalculator(stations.get(i), comparingTo) == desieredHammingDistance)
+							StationsBox.setText(StationsBox.getText() + "\n" + stations.get(i));
 					}
 				} catch (IOException e) {
-					e.printStackTrace();
+				
 				}
+				
 				
 			}
 		});
 		calculateHD.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//TODO: finish this
+				String comparingTo = compareWithDropBox.getValue();
+				try {
+					ArrayList<String> stations = MR.fileReader();
+					
+							
+									distance0.setText(Integer.toString(HammingDist.simmilarDistance(stations, comparingTo, 0)));
+									
+								
+									distance1.setText(Integer.toString(HammingDist.simmilarDistance(stations, comparingTo, 1)));
+								
+								
+									distance2.setText(Integer.toString(HammingDist.simmilarDistance(stations, comparingTo, 2)));
+								
+								
+									distance3.setText(Integer.toString(HammingDist.simmilarDistance(stations, comparingTo, 3)));
+									
+								
+									distance4.setText(Integer.toString(HammingDist.simmilarDistance(stations, comparingTo, 4)));
+								
+							
+								
+						
+					
+				} catch (IOException e) {
+					
+				}
 			}
 		});
 		addStation.setOnAction(new EventHandler<ActionEvent>() {
