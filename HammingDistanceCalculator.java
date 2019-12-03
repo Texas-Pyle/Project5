@@ -2,6 +2,7 @@
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -52,6 +56,11 @@ public class HammingDistanceCalculator extends Application {
 	
 	Scene scene;
 	
+	Image santaGif;
+	
+	@FXML
+	private ImageView imageView;
+	
 	ArrayList<String> stations;
 	public static void main(String[] args) {
 		launch(args);
@@ -76,13 +85,18 @@ public class HammingDistanceCalculator extends Application {
 		
 		initilizeSlider();
 		
+		initilizeGUI();
+		
 		initilizePane();
+		
 		
 		
 		
 		applicationStage.setScene(scene);
 		applicationStage.setTitle("Hamming Distance");
 		applicationStage.show();
+		
+		
 		
 		showStation.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -150,6 +164,8 @@ public class HammingDistanceCalculator extends Application {
 		 scene = new Scene(gridPane);
 		
 		gridPane.setColumnSpan(StationsBox, 2);
+		gridPane.setRowSpan(imageView, 3);
+		gridPane.setColumnSpan(imageView, 2);
 		
 		gridPane.add(hammingDistanceLabel,0,0);
 		gridPane.add(hammingDistance,1,0);
@@ -171,6 +187,8 @@ public class HammingDistanceCalculator extends Application {
 		gridPane.add(distanceLablel4, 0, 11);
 		gridPane.add(addStation, 0, 12);
 		gridPane.add(addStationsTxt, 1, 12);
+		gridPane.add(imageView, 3, 1);
+		
 		
 		Insets gdridPadding = new Insets(10,10,10,10);
 		gridPane.setPadding(gdridPadding);
@@ -200,6 +218,7 @@ public class HammingDistanceCalculator extends Application {
 		compareWithDropBox.getItems().addAll(stations);
 		compareWithDropBox.setValue("Select Station");
 		
+		
 	}
 
 
@@ -219,6 +238,8 @@ public class HammingDistanceCalculator extends Application {
 		 distanceLablel3 = new Label ("Distance3");
 		 distanceLablel4 = new Label ("Distance4");
 		 compareWithLabel = new Label ("Compare with:");
+		 
+		 
 		
 	}
 
@@ -247,6 +268,15 @@ public class HammingDistanceCalculator extends Application {
 		addStationsTxt = new TextField();
 		hammingDistance.setText("2.0");
 
+	}
+	
+	
+	
+	private void initilizeGUI() {
+		santaGif = new Image (this.getClass().getResource("Dacning santa.gif").toExternalForm());
+		imageView = new ImageView();
+		
+		imageView.setImage(santaGif);
 	}
 	
 	
